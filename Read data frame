@@ -9,9 +9,11 @@ def read_dataframe(file_path):
         return df
     except FileNotFoundError:
         print("File not found.")
+        return None
 
 # Plot the dataframe
 def plot_dataframe(df):
+  if df is not None:
     # For a data frame with numerical columns
     df.plot()
     plt.xlabel('Time')
@@ -20,11 +22,13 @@ def plot_dataframe(df):
     plt.title('Parameters')
     plt.legend(loc='best')
     plt.show()
+  else:
+    print("Dataframe is empty.")
 
 if __name__ == "__main__":
     file_path = input("Enter the file path of the dataframe (.log file): ")
-    try:
-        dataframe = read_dataframe(file_path)
+    dataframe = read_dataframe(file_path)
+    if dataframe is not None:
         plot_dataframe(dataframe)
-    except FileNotFoundError:
+    else:
         print("File not found.")
