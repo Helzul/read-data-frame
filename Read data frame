@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import num py
+
+# Read data frame form a .log file
+def read_dataframe(file_path):
+    try:
+        df = pd.read_csv(file_path, sep='\s+', engine='python', header=None)
+        return df
+    except FileNotFoundError:
+        print("File not found. Please provide the correct file path.")
+
+# Plot the dataframe
+def plot_dataframe(df):
+    # For a data frame with numerical columns
+    df.plot()
+    plt.xlabel('Time')
+    plt.ylabel('Energy')
+    plt.y1label('Presure')
+    plt.title('Parameters')
+    plt.legend(loc='best')
+    plt.show()
+
+if __name__ == "__main__":
+    file_path = input("Enter the file path of the dataframe (.log file): ")
+    try:
+        dataframe = read_dataframe(file_path)
+        plot_dataframe(dataframe)
+    except FileNotFoundError:
+        print("File not found. Please provide the correct file path.")
